@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "f3b6bfd4-03d0-4c54-b2e0-4857e0dd88b7",
+		"name": "transport",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api.localhost/test/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.localhost/test/",
+					"host": [
+						"api",
+						"localhost"
+					],
+					"path": [
+						"test",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api.localhost/login/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"pass\": \"password\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "api.localhost/login/",
+					"host": [
+						"api",
+						"localhost"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api.localhost/signup/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"eliot.courtel@wanadoo.fr\",\n\t\"password1\": \"monmotdepasse\",\n\t\"password2\": \"monmotdepasse\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "api.localhost/signup/",
+					"host": [
+						"api",
+						"localhost"
+					],
+					"path": [
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api.localhost/signin/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"eliot.courtel@wanadoo.fr\",\n\t\"password1\": \"monmotdepasse\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "api.localhost/signin/",
+					"host": [
+						"api",
+						"localhost"
+					],
+					"path": [
+						"signin",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api.localhost/renew/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "api.localhost/renew/",
+					"host": [
+						"api",
+						"localhost"
+					],
+					"path": [
+						"renew",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api.localhost/updateinfos/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstname\": \"eliot\",\n\t\"lastname\": \"courtel\",\n\t\"phone\": \"0626230000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "api.localhost/updateinfos/",
+					"host": [
+						"api",
+						"localhost"
+					],
+					"path": [
+						"updateinfos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api.localhost/infos/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "api.localhost/infos/",
+					"host": [
+						"api",
+						"localhost"
+					],
+					"path": [
+						"infos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api.localhost/addcard/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"crd_token\": \"tok_mastercard\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "api.localhost/addcard/",
+					"host": [
+						"api",
+						"localhost"
+					],
+					"path": [
+						"addcard",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api.localhost/listcard/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.localhost/listcard/",
+					"host": [
+						"api",
+						"localhost"
+					],
+					"path": [
+						"listcard",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

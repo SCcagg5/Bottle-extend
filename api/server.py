@@ -5,11 +5,14 @@ import json as JSON
 import os
 
 app = Bottle()
-host = str(os.getenv('API_HOST', '172.0.0.1'))
-port = int(os.getenv('API_PORT', 8080))
-weba = str(os.getenv('API_WEBA', '*'))
+host =      str(os.getenv('API_HOST', '0.0.0.0'))
+port =      int(os.getenv('API_PORT', 8080))
+weba =      str(os.getenv('API_WEBA', '*'))
+mod =       str(os.getenv('API_MOD', 'PROD'))
+secret =    str(os.getenv('API_SCRT', '!@ws4RT4ws212@#%'))
+password =  str(os.getenv('API_PASS', 'password'))
 
-call = lambda x : callnext(request).call(x)
+call = lambda x : callnext(request, response).call(x)
 
 @app.hook('after_request')
 def enable_cors():
@@ -20,6 +23,7 @@ def enable_cors():
 
 @app.error()
 @app.error(404)
+@app.error(405)
 def error(error):
     toret = ret(request.path, check.json(request))
     toret.add_error(error.body, int(error.status.split(" ")[0]))
@@ -27,8 +31,8 @@ def error(error):
     return JSON.dumps(toret.ret())
 
 if __name__ == '__main__':
-    try:
-        setuproute(app, call)
-        run(app, host=host, port=port, debug=True)
-    except:
-        os._exit(0)
+    #try:
+    setuproute(app, call)
+    run(app, host=host, port=port, debug=True )
+    #except:
+    #    os._exit(0)

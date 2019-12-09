@@ -1,0 +1,97 @@
+version: '3'
+networks:
+   back-net:
+     driver: bridge
+   proxy:
+     driver: bridge
+
+services:
+   datab:
+     build: ./db
+     restart: always
+     ports:
+       - 3306
+     networks:
+       - back-net
+     volumes:
+       - ./db/db:/var/lib/mysql
+     environment:
+       MYSQL_RANDOM_ROOT_PASSWORD: 1
+       MYSQL_USER: basic
+       MYSQL_DATABASE: basic
+       MYSQL_PASSWORD: 1q2W3e4R
+
+
+   bck-end:
+     build: ./api
+     ports:
+       - 8080
+     tty: true
+     stdin_open: true
+     depends_on:
+       - datab
+     networks:
+       - back-net
+       - proxy
+     volumes:
+       - ./api:/home/api/
+     environment:
+       VIRTUAL_HOST: api.localhost
+       VIRTUAL_PORT: 8080
+       API_MOD: $API_MOD
+       
+
+   front-adm:
+     image: phpmyadmin/phpmyadmin
+     container_name: phpmyadmin
+     environment:
+       - PMA_ARBITRARY=1
+     restart: always
+     ports:
+       - 80
+     volumes:
+       - /sessions
+     depends_on:
+       - datab
+     links:
+       - datab:db
+     networks:
+       - back-net
+       - proxy
+     environment:
+       VIRTUAL_HOST: sql.localhost
+       VIRTUAL_PORT: 80
+
+   nginx:
+      image: jwilder/nginx-proxy:alpine
+      container_name: nginx
+      restart: always
+      labels:
+        com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: 'true'
+      ports:
+        - 80:80
+        - 443:443
+      volumes:
+        - /srv/nginx/data/certs:/etc/nginx/certs:ro
+        - /srv/nginx/data/conf.d:/etc/nginx/conf.d
+        - /srv/nginx/data/vhost.d:/etc/nginx/vhost.d
+        - /srv/nginx/data/html:/usr/share/nginx/html
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+      networks:
+        - proxy
+
+   letsencrypt:
+      image: jrcs/letsencrypt-nginx-proxy-companion
+      container_name: letsencrypt
+      volumes:
+        - /srv/nginx/data/vhost.d:/etc/nginx/vhost.d
+        - /srv/nginx/data/certs:/etc/nginx/certs:rw
+        - /srv/nginx/data/html:/usr/share/nginx/html
+        - /var/run/docker.sock:/var/run/docker.sock:ro
+      depends_on:
+        - nginx
+      networks:
+        - proxy
+
+volumes:
+  db:
