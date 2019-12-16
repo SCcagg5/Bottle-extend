@@ -2,10 +2,10 @@
 
 This framework is based on functions table, each route specified in `api/Controller/routes.py`
 
-These functions should be referenced in `/api/Controller/routesfunc.py` and use object specified in the folder
+These functions should be referenced in `/api/Controller/routesfunc.py` and use object specified in the folder `api/Object/`
 
 
-`routes.py`
+**routes.py**
 ```python
 @app.route('/test/',   ['OPTIONS', 'POST', 'GET'], lambda x = None: call([])                                 )
 @app.route('/login/',  ['OPTIONS', 'POST'],        lambda x = None: call([getauth])                          )
@@ -13,7 +13,7 @@ These functions should be referenced in `/api/Controller/routesfunc.py` and use 
 ```
 
 
-``
+**routesfunc.py**
 ```python
 def getauth(cn, nextc):
     err = check.contain(cn.pr, ["pass"])
@@ -43,6 +43,25 @@ def signup(cn, nextc):
 
     return cn.call_next(nextc, err)
 ```
+
+**The `cn` object:**
+
+The `cn` object is created at launch it contain's **POST parameters** under `pr`, **cookies** under `ck`, **headers** under `hd`
+
+``` python
+class callnext:
+    def __init__(self, req, resp = None, err = None, anonlvl = None):
+        self.pr = check.json(req)
+        self.ck = check.cookies_json(req)
+        self.hd = check.head_json(req, self.ck)
+        self.private = {}
+        self.cookie = {}
+        self.toret = ret(req.path, self.pr, self.hd, self.ck, anonlvl)
+        self.req = req
+        self.resp = resp
+        self.err = err
+```
+
 
 ### Routes's Basics:
 
