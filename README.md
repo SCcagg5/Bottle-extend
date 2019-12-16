@@ -11,6 +11,10 @@ These functions should be referenced in `/api/Controller/routesfunc.py` and use 
 @app.route('/login/',  ['OPTIONS', 'POST'],        lambda x = None: call([getauth])                          )
 @app.route('/signup/', ['OPTIONS', 'POST'],        lambda x = None: call([myauth, signup, signin, gettoken]) )
 ```
+*The first parameter is the route's URL, the second is an array containning the method(s) allowed, the third is a `lambda` using a funtion of the `cn` object under the name `call`, you'll have to pass it an array of func*
+```python
+call = lambda x : callnext(request, response).call(x)
+```
 
 
 **routesfunc.py**
