@@ -23,6 +23,7 @@ Routes | Methods |
 ### Return template
 
 ```javascript
+// In DEV mod
   {
   "queryInfos": { //query infos only available on mod: ['DEV', 'TEST']
       "route": "/test/", //the route called
@@ -38,4 +39,6 @@ Routes | Methods |
   "succes": true, //true or false
   "mod": "DEV" //DEFINED in the .env [DEFAULT = PROD]
 }
+
+//cookie sent are relocated in the header, overrided if a header with the same key is provided
 ```
