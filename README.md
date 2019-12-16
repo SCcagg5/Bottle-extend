@@ -48,6 +48,16 @@ def signup(cn, nextc):
     return cn.call_next(nextc, err)
 ```
 
+**Warning**:
+
+You'll have to follow this partern to create functions in `routesfunc.py`
+```python
+def signup(cn, nextc):
+    err = [TRUE, {}, 200]
+    #YOUR CODE
+    return cn.call_next(nextc, err)
+```
+
 **The `cn` object:**
 
 The `cn` object is created at launch it contain's **POST parameters** under `pr`, **cookies** under `ck`, **headers** under `hd`
@@ -66,6 +76,18 @@ class callnext:
         self.err = err
 ```
 
+**The `nextc` object:**
+It's an array containing the functions left to call
+
+**The `err` object:**
+It's an array containing the returns of your function, it'll have the patern:
+```python
+err = [TRUE,                #FALSE -> it will stop the execution and throw an error
+       {"mydata": "test"},  # if TRUE -> json else a string containning an error
+       200,                 # response code
+       {"mycookie": "data"} # (optionnal) -> cookies to set
+      ]
+```
 
 ### Routes's Basics:
 
