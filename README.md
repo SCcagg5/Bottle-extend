@@ -1,4 +1,4 @@
-# transport-api
+# Extended bottle
 
 
 ### Routes's Basics:
@@ -18,7 +18,6 @@ Routes | Methods |
 `/order/` | POST |
 `/history/` | POST |
 `/orderdetail/` | POST |
-`/emulate/` | POST |
 
 
 ### Return template
