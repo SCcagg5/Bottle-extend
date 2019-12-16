@@ -58,6 +58,8 @@ def signup(cn, nextc):
     return cn.call_next(nextc, err)
 ```
 
+
+
 **The `cn` object:**
 
 The `cn` object is created at launch it contain's **POST parameters** under `pr`, **cookies** under `ck`, **headers** under `hd`
@@ -76,10 +78,16 @@ class callnext:
         self.err = err
 ```
 
+
+
 **The `nextc` object:**
+
 It's an array containing the functions left to call
 
+
+
 **The `err` object:**
+
 It's an array containing the returns of your function, it'll have the patern:
 ```python
 err = [TRUE,                #FALSE -> it will stop the execution and throw an error
