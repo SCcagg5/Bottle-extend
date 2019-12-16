@@ -1,5 +1,12 @@
 # Extended bottle
 
+This framework is based on the 
+
+```python
+ @app.route('/test/',            ['OPTIONS', 'POST', 'GET'],  lambda x = None: call([])                                   )
+ @app.route('/login/',    	     ['OPTIONS', 'POST'],         lambda x = None: call([getauth])                            )
+ @app.route('/signup/',    	     ['OPTIONS', 'POST'],         lambda x = None: call([myauth, signup, signin, gettoken])   )
+```
 
 ### Routes's Basics:
 
